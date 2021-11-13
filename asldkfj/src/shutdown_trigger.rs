@@ -1,4 +1,6 @@
+use anyhow::Result;
 use lazy_static::lazy_static;
+use std::future::Future;
 use tokio_util::sync::{CancellationToken, DropGuard};
 
 /// Waits for a signal that requests a graceful shutdown, like SIGTERM or SIGINT.
@@ -30,15 +32,9 @@ async fn wait_for_signal() {
     log::info!("Received SIGINT.");
 }
 
-async fn print_shutdown_message() {
-    wait_for_shutdown().await;
-    log::info!("Shutting down ...");
-}
-
 /// Registers Ctrl+Z and SIGTERM handlers to cause a program shutdown
-pub async fn register_signal_handlers() {
+pub fn register_signal_handlers() {
     tokio::spawn(wait_for_signal());
-    tokio::spawn(print_shutdown_message());
 }
 
 // Signals global shutdown
@@ -54,4 +50,21 @@ pub async fn wait_for_shutdown() {
 /// Creates a guard object that triggers a program shutdown when dropped
 pub fn create_shutdown_guard() -> DropGuard {
     SHUTDOWN_TOKEN.clone().drop_guard()
+}
+
+/// Executes an async submodule.
+///
+/// When the submodule returns an error,
+/// a program shutdown gets triggered.
+pub fn start_submodule(
+    submodule: impl Future<Output = Result<()>> + Send + 'static,
+) -> tokio::task::JoinHandle<()> {
+    async fn submodule_executor(submodule: impl Future<Output = Result<()>>) {
+        if let Err(e) = submodule.await {
+            log::error!("Submodule Error: {:?}", e);
+            SHUTDOWN_TOKEN.cancel();
+        }
+    }
+
+    tokio::spawn(submodule_executor(submodule))
 }
