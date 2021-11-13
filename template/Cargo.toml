@@ -1,0 +1,12 @@
+[package]
+name = "{{project-name}}"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio-serial = "5.4.1"
+anyhow = "1.0"
+env_logger = "0.9.0"
+log = "0.4.14"
