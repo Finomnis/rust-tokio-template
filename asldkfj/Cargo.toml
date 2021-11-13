@@ -1,5 +1,5 @@
 [package]
-name = "{{project-name}}"
+name = "asldkfj"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 # General
 anyhow = "1.0"
+lazy_static = "1.4"
 
 # Logging
 env_logger = "0.9"
@@ -15,3 +16,7 @@ log = "0.4"
 
 # Tokio
 tokio = { version = "1", features = ["full"] }
+tokio-util = "0.6.9"
+
+# Command line arguments
+clap = "3.0.0-beta.5"
