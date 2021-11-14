@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 # General
 anyhow = "1.0"
+lazy_static = "1.4"
 
 # Logging
 env_logger = "0.9"
@@ -15,3 +16,8 @@ log = "0.4"
 
 # Tokio
 tokio = { version = "1", features = ["full"] }
+tokio-util = "0.6"
+
+# Command line arguments
+# TODO replace with proper 3.0 version once released
+clap = "3.0.0-beta.5"

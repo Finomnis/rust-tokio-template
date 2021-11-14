@@ -74,7 +74,7 @@ pub fn start_submodule(
 #[macro_export]
 /// Waits for given task handles. Times out after given duration.
 macro_rules! shutdown_with_timeout {
-    ($duration:expr, $($e : expr),* $(,) ?) => {{
+    ($duration:expr, $($handles : expr),* $(,) ?) => {{
         use anyhow::anyhow;
 
         // Flattens JoinHandle<T> to Future<Result<T>>, to enable proper error early stopping in try_join.
@@ -88,7 +88,7 @@ macro_rules! shutdown_with_timeout {
 
         let task_joiner = async {
             tokio::try_join!(
-                $(flatten($e)),*
+                $(flatten($handles)),*
             ).and(Ok(()))
         };
 
