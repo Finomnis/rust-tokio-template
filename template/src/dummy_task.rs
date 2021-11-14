@@ -17,7 +17,7 @@ pub async fn dummy_task() -> Result<()> {
         _ = countdown() => Err(anyhow!("TASK FAILED, as expected.")),
         _ = wait_until_shutdown() => {
             log::info!("Shutting down dummy task!");
-            sleep(Duration::from_millis(3000)).await;
+            sleep(Duration::from_millis(500)).await;
              Ok(())
         },
     }
