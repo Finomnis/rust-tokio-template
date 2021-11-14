@@ -1,24 +1,13 @@
-use super::graceful_shutdown::wait_until_shutdown;
-use anyhow::{anyhow, Result};
+use anyhow::Result;
 use log;
-use tokio::time::{sleep, Duration};
+use tokio_graceful_shutdown::wait_until_shutdown_started;
 
 pub async fn dummy_task() -> Result<()> {
-    log::info!("This task will fail in 10 seconds.");
+    log::info!("dummy_task started.");
 
-    async fn countdown() {
-        for i in (1..=10).rev() {
-            log::info!("{}", i);
-            sleep(Duration::from_secs(1)).await;
-        }
-    }
+    wait_until_shutdown_started().await;
 
-    tokio::select! {
-        _ = countdown() => Err(anyhow!("TASK FAILED, as expected.")),
-        _ = wait_until_shutdown() => {
-            log::info!("Shutting down dummy task!");
-            sleep(Duration::from_millis(500)).await;
-             Ok(())
-        },
-    }
+    log::info!("dummy_task stopped");
+
+    Ok(())
 }
