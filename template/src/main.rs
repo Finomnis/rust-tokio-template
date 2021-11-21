@@ -12,7 +12,7 @@ async fn main() -> Result<()> {
 
     // Initialize and run subsystems
     Toplevel::new()
-        .start("dummy_task", dummy_task::DummyTask {})
+        .start("dummy_task", dummy_task::dummy_task)
         .catch_signals()
         .wait_for_shutdown(Duration::from_millis(1000))
         .await

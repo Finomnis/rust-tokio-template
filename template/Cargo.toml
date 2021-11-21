@@ -17,8 +17,7 @@ log = "0.4"
 tokio = { version = "1", features = ["full"] }
 
 # Shutdown
-tokio-graceful-shutdown = "0.2"
-async-trait = "0.1"
+tokio-graceful-shutdown = "0.3"
 
 # Command line arguments
 # TODO replace with proper 3.0 version once released
