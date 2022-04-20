@@ -1,10 +1,10 @@
-use clap::{crate_version, Parser};
+use clap::Parser;
 use env_logger::Env;
 
-// This doc string acts as a help message when the user runs '--help'
-// as do all doc strings on fields
+/// This doc string acts as a help message when the user runs '--help'
+/// as do all doc strings on fields
 #[derive(Parser)]
-#[clap(version = crate_version!())]
+#[clap(version, about)]
 pub struct Options {
     /// Increase verbosity, and can be used multiple times
     #[clap(short, long, parse(from_occurrences))]
