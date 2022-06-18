@@ -1,7 +1,7 @@
 mod command_line;
 mod dummy_task;
 
-use anyhow::Result;
+use miette::Result;
 use tokio::time::Duration;
 use tokio_graceful_shutdown::Toplevel;
 
@@ -16,4 +16,5 @@ async fn main() -> Result<()> {
         .catch_signals()
         .handle_shutdown_requests(Duration::from_millis(1000))
         .await
+        .map_err(Into::into)
 }

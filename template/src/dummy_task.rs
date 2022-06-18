@@ -1,4 +1,4 @@
-use anyhow::Result;
+use miette::Result;
 use tokio_graceful_shutdown::SubsystemHandle;
 
 pub async fn dummy_task(subsys: SubsystemHandle) -> Result<()> {
