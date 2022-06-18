@@ -10,7 +10,7 @@ The following features get set up by this template:
 - Logging (env_logger)
 - Return code error propagation (miette)
 - Tokio runtime
-- Ctrl-Z & SIGTERM handling
+- Ctrl-C & SIGTERM handling
 - Graceful subsystem shutdown
 
 Especially graceful shutdown is not a trivial task in Async Rust.
