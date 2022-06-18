@@ -13,9 +13,6 @@ The following features get set up by this template:
 - Ctrl-C & SIGTERM handling
 - Graceful subsystem shutdown
 
-Especially graceful shutdown is not a trivial task in Async Rust.
-The code needed to perform an async shutdown is big enough that it might get moved to its own crate at some point.
-
 ## Usage
 
 Install `cargo-generate`:
