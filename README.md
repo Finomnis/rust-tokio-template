@@ -8,7 +8,7 @@ The following features get set up by this template:
 
 - Command line argument parser (clap)
 - Logging (env_logger)
-- Return code error propagation (anyhow)
+- Return code error propagation (miette)
 - Tokio runtime
 - Ctrl-Z & SIGTERM handling
 - Graceful subsystem shutdown
