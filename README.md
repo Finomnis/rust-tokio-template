@@ -1,6 +1,6 @@
 # rust-tokio-template
 
-This template is provides a subsystem-based tokio project.
+This template generates a subsystem-based tokio project ready to be compiled.
 
 ## Features
 
