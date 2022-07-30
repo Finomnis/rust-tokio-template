@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 # General
-miette = "4"
+miette = "5"
 
 # Logging
 env_logger = "0.9"
@@ -17,7 +17,7 @@ log = "0.4"
 tokio = { version = "1", features = ["full"] }
 
 # Shutdown
-tokio-graceful-shutdown = "0.10"
+tokio-graceful-shutdown = "0.10.1"
 
 # Command line arguments
-clap = { version = "3.1", features = ["derive"] }
+clap = { version = "3.2", features = ["derive"] }
