@@ -1,14 +1,12 @@
 use clap::Parser;
 use env_logger::Env;
 
-/// This doc string acts as a help message when the user runs '--help'
-/// as do all doc strings on fields
 #[derive(Parser)]
-#[clap(version, about)]
+#[clap(version, about, long_about = None)]
 pub struct Options {
     /// Increase verbosity, and can be used multiple times
-    #[clap(short, long, parse(from_occurrences))]
-    pub verbose: i32,
+    #[arg(short, long, action = clap::ArgAction::Count)]
+    pub verbose: u8,
 }
 
 pub fn parse() -> Options {
