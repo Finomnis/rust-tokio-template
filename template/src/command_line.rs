@@ -1,5 +1,4 @@
 use clap::Parser;
-use env_logger::Env;
 
 #[derive(Parser)]
 #[clap(version, about, long_about = None)]
@@ -13,11 +12,11 @@ pub fn parse() -> Options {
     let opts = Options::parse();
 
     let debug_level = match opts.verbose {
-        0 => "info",
-        1 => "debug",
-        _ => "trace",
+        0 => tracing::Level::INFO,
+        1 => tracing::Level::DEBUG,
+        _ => tracing::Level::TRACE,
     };
-    env_logger::Builder::from_env(Env::default().default_filter_or(debug_level)).init();
+    tracing_subscriber::fmt().with_max_level(debug_level).init();
 
     opts
 }

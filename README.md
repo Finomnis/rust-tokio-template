@@ -7,7 +7,7 @@ This template generates a subsystem-based tokio project ready to be compiled.
 The following features get set up by this template:
 
 - Command line argument parser (clap)
-- Logging (env_logger)
+- Logging (tracing)
 - Return code error propagation (miette)
 - Tokio runtime
 - Ctrl-C & SIGTERM handling
